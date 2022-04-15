@@ -1,7 +1,7 @@
 use iced::{
     canvas::{self, Cache, Canvas, Cursor, Geometry, LineCap, Path, Stroke},
     executor, Application, Color, Command, Container, Element, Length, Point,
-    Rectangle, Settings, Subscription, Vector,
+    Rectangle, Settings, Subscription, Vector, Text, Column,
 };
 
 pub fn main() -> iced::Result {
@@ -57,7 +57,7 @@ impl Application for Clock {
     }
 
     fn subscription(&self) -> Subscription<Message> {
-        iced::time::every(std::time::Duration::from_millis(500)).map(|_| {
+        iced::time::every(std::time::Duration::from_secs(1)).map(|_| {
             Message::Tick(
                 time::OffsetDateTime::now_local()
                     .unwrap_or_else(|_| time::OffsetDateTime::now_utc()),
@@ -66,9 +66,15 @@ impl Application for Clock {
     }
 
     fn view(&mut self) -> Element<Message> {
-        let canvas = Canvas::new(self).width(Length::Fill).height(Length::Fill);
+        //let canvas = Canvas::new(self).width(Length::Fill).height(Length::Fill);
+        let now = self.now.clone();
+        let date = now.date();
+        let time = time::OffsetDateTime::from_unix_timestamp(now.unix_timestamp()).unwrap();
+        let content = Column::new()
+            .push(Text::new(format!("{},{}",date,time.time())));
 
-        Container::new(canvas)
+
+        Container::new(content)
             .width(Length::Fill)
             .height(Length::Fill)
             .padding(20)

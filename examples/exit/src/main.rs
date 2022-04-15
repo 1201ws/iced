@@ -39,7 +39,8 @@ impl Sandbox for Exit {
     fn update(&mut self, message: Message) {
         match message {
             Message::Confirm => {
-                self.exit = true;
+                // self.exit = true;
+                self.show_confirm = false;
             }
             Message::Exit => {
                 self.show_confirm = true;

@@ -88,6 +88,8 @@ members = [
     "examples/tour",
     "examples/url_handler",
     "examples/websocket",
+    "examples/my_test",
+    "examples/my_test2",
 ]
 
 [dependencies]

@@ -41,6 +41,7 @@ impl Application for WebSocket {
         (
             Self::default(),
             Command::perform(echo::server::run(), |_| Message::Server),
+            
         )
     }
 

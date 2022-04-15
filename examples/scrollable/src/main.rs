@@ -160,11 +160,11 @@ impl Sandbox for ScrollableDemo {
                         .width(Length::Fill)
                         .height(Length::Fill)
                         .spacing(10)
-                        .push(
-                            Container::new(scrollable)
-                                .width(Length::Fill)
-                                .height(Length::Fill)
-                                .style(*theme),
+                        .push(scrollable
+                            // Container::new(scrollable)
+                            //     .width(Length::Fill)
+                            //     .height(Length::Fill)
+                            //     .style(*theme),
                         )
                         .push(ProgressBar::new(
                             0.0..=1.0,
